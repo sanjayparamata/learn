@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Landing Page</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: white;
+            color: black;
+            font-family: "Fira Sans", sans-serif;
+            background-color: white;
+        }
+
+        nav {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 5%;
+            background-color: #8cc099;
+        }
+
+        nav .heading {
+            font-size: 30px;
+            font-weight: 700;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            padding: 8px 15px;
+            border-radius: 10px;
+            transition: 0.2s ease-in;
+        }
+
+        nav ul li a {
+            color: black;
+            font-size: 20px;
+            font-weight: 500;
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul li:hover {
+            background-color: green;
+        }
+
+        nav ul li a:hover {
+            color: white;
+        }
+
+        nav .sideMenuButton {
+            font-size: 30px;
+            font-weight: bolder;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* responsive navbar css */
+
+        @media screen and (max-width: 60px) {
+            nav .sideMenuButton {
+                display: flex;
+            }
+
+            nav .navbar {
+                display: none;
+            }
+
+            .sideNavigationBar {
+                display: block !important;
+            }
+        }
+
+        .sideNavigationBar {
+            height: 100%;
+            position: fixed;
+            top: 0;
+            right: 0%;
+            background-color: green;
+            overflow-x: hidden;
+            transition: 0.3s ease-in;
+            padding-top: 60px;
+            display: none;
+        }
+
+        .sideNavigationBar a {
+            padding: 8px 8px 8px 40px;
+            display: block;
+            font-size: 25px;
+            font-weight: 500;
+            color: #d1d1d1;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .sideNavigationBar a button {
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: green;
+            font-size: 16px;
+            border-style: none;
+            font-weight: 700;
+        }
+
+        .sideNavigationBar a:hover {
+            color: white;
+        }
+
+        .sideNavigationBar .closeButton {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 20px;
+            margin-left: 50px;
+        }
+
+        .line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2% 5%;
+        }
+
+        .line .side1 {
+            padding-right: 50px;
+        }
+
+        .side1 h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+            color: green;
+        }
+
+        .side1 button {
+            width: 200px;
+            padding: 12px 20px;
+            border-radius: 20px;
+            border-style: none;
+            color: black;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* Header content responsive */
+
+        @media screen and (max-width: 980px) {
+            .side2 img {
+                width: 350px;
+            }
+
+            .side1 h1 {
+                font-size: 40px;
+            }
+
+            .side1 p {
+                font-size: 17px;
+            }
+
+            .line {
+                margin-top: 80px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .side1 h1 {
+                font-size: 35px;
+            }
+
+            .line {
+                flex-direction: column;
+            }
+
+            .line .side1 {
+                padding: 30px;
+            }
+        }
+
+        /* section */
+
+        section .topic a {
+            font-size: 25px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .about .boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .about .boxes .box {
+            margin: 10px 20px;
+            max-width: calc(100% / 3 50px);
+            text-align: center;
+            border-radius: 12px;
+            padding: 30px 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            cursor: default;
+        }
+
+        /* Contact Page */
+
+        .contact {
+            padding: 20px;
+        }
+
+        .contact .content {
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+
+        .content .title {
+            width: 80%;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 40px;
+        }
+
+        .title {
+            margin-bottom: 30px;
+            margin-left: 80px;
+        }
+
+        .contactMenu {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .input2 {
+            margin-top: 10;
+        }
+
+        .label1 {
+            font-size: 18px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-weight: bolder;
+        }
+
+        .contactMenu .input1 input {
+            border-radius: 13px;
+            padding: 6px;
+        }
+
+        .input2 input {
+            border-color: rgb(252, 244, 244);
+            width: 400px;
+        }
+
+        .button {
+            margin-top: 12px;
+            margin-left: 5px;
+        }
+
+        .button button {
+            width: 162px;
+            height: 35px;
+            border-radius: 12px;
+            border-color: transparent;
+        }
+
+        .button button:hover {
+            background-color: #8cc099;
+        }
+
+        button {
+            width: 162px;
+            height: 35px;
+            border-radius: 12px;
+            border-color: transparent;
+        }
+
+        button:hover {
+            background-color: #8cc099;
+        }
+
+        .rightside1 {
+            display: flex;
+            flex-direction: column;
+            margin-left: 300px;
+        }
+
+        .title1 {
+            font-size: 18px;
+            margin-top: 8px;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+
+        .content1 {
+            width: 450px;
+            margin-top: 2px;
+            color: grey;
+        }
+
+        /* Footer */
+
+        footer {
+            background: var(--primary-color);
+            padding: 15px 0;
+            text-align: center;
+            font-family: "Poppins", sans-serif;
+        }
+
+        footer .footer span {
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--white-color);
+        }
+
+        footer .footer span a {
+            font-weight: 500;
+            color: var(--white-color);
+        }
+
+        footer .footer span a:hover {
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width: 1060px) {
+            .contactMenu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .rightside1 {
+                display: flex;
+                flex-direction: column;
+                margin-left: 0px;
+            }
+
+            .content1 {
+                width: 100%;
+                margin-top: 2px;
+                color: grey;
+            }
+
+            .side2 img {
+                width: 95%;
+                height: 90%;
+            }
+        }
+
+
+
+        .form-heading {
+            font-family: "Roboto";
+            font-size: 36px;
+            padding-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-family: "Roboto";
+            font-size: 14px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .side2 img {
+                width: 100%;
+            }
+
+            section .topic a {
+                font-size: 20px;
+            }
+
+            section .topic p {
+                font-size: 5px;
+            }
+
+            .land {
+                background-color: red;
+            }
+
+            .about .boxes {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about .boxes .box {
+                max-width: 70%;
+            }
+        }
+    </style>
+    <script>
+        function openNavbar() {
+            document.getElementById("sideNavigationBar")
+                .style.width = "50%";
+        }
+
+        function closeNavbar() {
+            document.getElementById("sideNavigationBar")
+                .style.width = "0%";
+        }
+        let myFormEl = document.getElementById("myForm");
+
+        let nameEl = document.getElementById("name");
+        let nameErrMsgEl = document.getElementById("nameErrMsg");
+
+        let emailEl = document.getElementById("email");
+        let emailErrMsgEl = document.getElementById("emailErrMsg");
+
+        nameEl.addEventListener("blur", function(event) {
+            if (event.target.value === "") {
+                nameErrMsgEl.textContent = "Required*";
+            } else {
+                nameErrMsgEl.textContent = "";
+            }
+        });
+
+        emailEl.addEventListener("blur", function(event) {
+            if (event.target.value === "") {
+                emailErrMsgEl.textContent = "Required*";
+            } else {
+                emailErrMsgEl.textContent = "";
+            }
+        });
+
+        myFormEl.addEventListener("submit", function(event) {
+            event.preventDefault();
+        });
+    </script>
+</head>
+
+<body class="">
+    <nav class="land">
+        <div class="heading">Sri ram</div>
+        <span class="sideMenuButton" onclick="openNavbar()">
+        </span>
+
+        <div class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Side navigation bar for 
+		responsive website -->
+    <div class="sideNavigationBar" id="sideNavigationBar">
+        <a href="#" class="closeButton" onclick="closeNavbar()">
+
+        </a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Sign Up</a>
+    </div>
+
+    <!-- Content -->
+    <div class="line " id="Home">
+        <div class="side text-center">
+            <h1 class="text-center">Welcome To My Page</h1>
+
+        </div>
+    </div>
+
+    <section class="about" id="My Projects">
+        <div class="content">
+            <div class="title">
+                <span class="text-center">Projects</span>
+            </div>
+            <div class="boxes">
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://ramchatbot77.ccbp.tech/" target="_blank">
+                            AIchatbot
+                        </a>
+                    </div>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="box">
+
+                    <div class="topic">
+                        <a href="" target="_blank">
+                            Resume Bulider
+                        </a>
+                    </div>
+                    <p>
+
+                    </p>
+                </div>
+
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://sriram.ccbp.tech/" target="_blank">
+                            Portoflio
+                        </a>
+                    </div>
+                    <p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="content">
+            <div class="container">
+                <h1 class="form-heading title">Sign up</h1>
+                <form id="myForm">
+                    <div class="mb-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" />
+                        <p id="nameErrMsg" class="error-message"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" />
+                        <p id="emailErrMsg" class="error-message"></p>
+                    </div>
+                </form>
+                <div>
+                    <button class="button btn btn-primary">Sign Up</button>
+                </div>
+
+            </div>
+
+
+            <div class="m-5">
+                <h1 class="">About</h1>
+                <div class="input3">
+                    <div class="rightside1">
+                        <div class="title1">
+                            <span>
+                                Contact Us
+                            </span>
+                        </div>
+                        <div class="content1">
+                            13/45-2,karneedilanka,high school road,kesnakurru palem
+                        </div>
+                        <div class="title1">
+                            <span>More Information</span>
+                        </div>
+                        <div class="content1">
+                            <p>Get in Touch </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer section -->
+
+    <footer>
+        <div class="footer">
+            <span><i class="far fa-copyright"></i>
+                created By
+                <a href="https://linktr.ee/sriram" target="_blank">
+                    Sri Ram
+                </a>
+            </span>
+        </div>
+    </footer>
+</body>
+
+</html>
